@@ -1,0 +1,454 @@
+/* Ida en Chris Vakantie Spelletjes
+   Kuromi-geïnspireerde stijl: paars/zwart, roze accenten, strikjes.
+   Eigen vormgeving — geen officiële licentie-illustraties. */
+
+:root {
+  --nacht:        #160a24;
+  --nacht-diep:   #0d0616;
+  --paneel:       #24123a;
+  --paneel-rand:  #3d2159;
+  --paars:        #8b5cf6;
+  --paars-licht:  #c4a5ff;
+  --roze:         #ff8fd0;
+  --roze-diep:    #e4529f;
+  --tekst:        #f3ebff;
+  --tekst-zacht:  #b9a3d6;
+  --ronding:      18px;
+  --schaduw:      0 6px 20px rgba(0, 0, 0, .45);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1100px 600px at 12% -10%, #3a1a5c 0%, transparent 60%),
+    radial-gradient(900px 500px at 92% 8%, #4a1440 0%, transparent 55%),
+    var(--nacht-diep);
+  color: var(--tekst);
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.app {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 20px 16px calc(40px + env(safe-area-inset-bottom));
+}
+
+/* ---------- Kop ---------- */
+
+.kop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.strik {
+  flex: 0 0 auto;
+  width: 54px;
+  height: 39px;
+  filter: drop-shadow(0 2px 6px rgba(255, 143, 208, .35));
+}
+
+.strik path { fill: var(--roze); }
+.strik .lint { fill: var(--roze-diep); }
+.strik .knoop { fill: var(--roze-diep); }
+
+h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: .2px;
+  text-shadow: 0 2px 10px rgba(139, 92, 246, .5);
+}
+
+.opslag-waarschuwing {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #4a1230;
+  border: 1px solid #7d2450;
+  color: #ffd0e6;
+  font-size: .9rem;
+}
+
+/* ---------- Tabbladen ---------- */
+
+.tabbladen {
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  margin-bottom: 18px;
+  background: rgba(13, 6, 22, .6);
+  border: 1px solid var(--paneel-rand);
+  border-radius: var(--ronding);
+}
+
+.tabblad {
+  flex: 1;
+  padding: 11px 8px;
+  border: 0;
+  border-radius: 13px;
+  background: transparent;
+  color: var(--tekst-zacht);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+
+.tabblad[aria-selected="true"] {
+  background: linear-gradient(160deg, var(--paars), var(--roze-diep));
+  color: #fff;
+  box-shadow: var(--schaduw);
+}
+
+/* ---------- Panelen ---------- */
+
+.paneel[hidden] { display: none; }
+
+.veld-label {
+  margin: 0 0 8px;
+  color: var(--tekst-zacht);
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+.leeg {
+  margin: 0;
+  padding: 22px 18px;
+  border: 1px dashed var(--paneel-rand);
+  border-radius: var(--ronding);
+  color: var(--tekst-zacht);
+  text-align: center;
+}
+
+.leeg[hidden] { display: none; }
+
+/* ---------- Spellenlijst (tabblad "alle spellen") ---------- */
+
+.spellenlijst {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.spellenlijst:empty { display: none; }
+
+.spel-rij {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: linear-gradient(160deg, var(--paneel), #1b0e2d);
+  border: 1px solid var(--paneel-rand);
+  border-radius: var(--ronding);
+  box-shadow: var(--schaduw);
+}
+
+.spel-rij .spel-naam {
+  flex: 1;
+  min-width: 0;
+  font-weight: 700;
+  overflow-wrap: break-word;
+}
+
+/* In beheermodus staan er twee knoppen extra in de rij: alles wat compacter,
+   zodat de spelnaam niet middenin een woord hoeft af te breken. */
+.spellenlijst.beheren .spel-rij {
+  gap: 8px;
+  padding: 12px;
+}
+
+.spellenlijst.beheren .eindstand {
+  padding: 5px 9px;
+  font-size: .82rem;
+}
+
+.spel-rij .eindstand {
+  flex: 0 0 auto;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, .18);
+  border: 1px solid rgba(196, 165, 255, .3);
+  color: var(--paars-licht);
+  font-size: .9rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Beheerknoppen per rij — alleen zichtbaar in beheermodus */
+
+.rij-knop {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--paneel-rand);
+  border-radius: 11px;
+  background: rgba(13, 6, 22, .55);
+  color: var(--paars-licht);
+  font: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.rij-knop:hover { border-color: var(--roze); color: var(--roze); }
+.rij-knop.verwijder:hover { border-color: #ff6b8f; color: #ff6b8f; }
+
+.naam-invoer {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---------- Beheer ---------- */
+
+.beheer { margin-top: 16px; }
+
+.beheer-knop {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid var(--paneel-rand);
+  border-radius: 14px;
+  background: rgba(36, 18, 58, .5);
+  color: var(--tekst-zacht);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.beheer-knop:hover { color: var(--roze); border-color: var(--roze-diep); }
+.beheer-knop[aria-expanded="true"] { color: var(--roze); border-color: var(--roze-diep); }
+
+.toevoegen { margin-top: 14px; }
+.toevoegen[hidden] { display: none; }
+
+.toevoeg-rij {
+  display: flex;
+  gap: 8px;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 11px 14px;
+  background: var(--nacht);
+  border: 1px solid var(--paneel-rand);
+  border-radius: 13px;
+  color: var(--tekst);
+  font: inherit;
+}
+
+input[type="text"] { flex: 1; min-width: 0; }
+
+input::placeholder { color: #6f5a8c; }
+
+input:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--roze);
+  outline-offset: 2px;
+}
+
+.primair {
+  padding: 11px 18px;
+  border: 0;
+  border-radius: 13px;
+  background: linear-gradient(160deg, var(--paars), var(--roze-diep));
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--schaduw);
+}
+
+.primair:active { transform: translateY(1px); }
+
+/* ---------- Spelkiezer (tabblad spelselectie) ---------- */
+
+.spelkiezer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.spelkiezer:empty { display: none; }
+
+.kies-knop {
+  padding: 9px 15px;
+  border: 1px solid var(--paneel-rand);
+  border-radius: 999px;
+  background: rgba(36, 18, 58, .65);
+  color: var(--tekst-zacht);
+  font: inherit;
+  font-weight: 700;
+  font-size: .95rem;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+
+.kies-knop:hover { border-color: var(--roze-diep); color: var(--tekst); }
+
+.kies-knop[aria-pressed="true"] {
+  background: linear-gradient(160deg, var(--paars), var(--roze-diep));
+  border-color: transparent;
+  color: #fff;
+}
+
+/* ---------- Gekozen spel ---------- */
+
+.gekozen-spel[hidden] { display: none; }
+
+.gekozen-spel {
+  padding: 20px 18px;
+  background: linear-gradient(165deg, var(--paneel), #170c26);
+  border: 1px solid var(--paneel-rand);
+  border-radius: 24px;
+  box-shadow: var(--schaduw);
+}
+
+.gekozen-spel h2 {
+  margin: 0 0 18px;
+  font-size: 1.2rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.stand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.speler {
+  flex: 1;
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+}
+
+.speler-naam {
+  color: var(--tekst-zacht);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.punten {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--roze);
+  text-shadow: 0 3px 16px rgba(255, 143, 208, .4);
+  font-variant-numeric: tabular-nums;
+}
+
+.streep {
+  color: var(--paneel-rand);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.wint-knoppen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.wint {
+  padding: 17px 10px;
+  border: 0;
+  border-radius: 17px;
+  color: #fff;
+  font: inherit;
+  font-size: 1.02rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--schaduw);
+}
+
+.wint.chris { background: linear-gradient(160deg, #7c3aed, #4c1d95); }
+.wint.ida   { background: linear-gradient(160deg, #ff8fd0, #b5257a); }
+.wint:active { transform: translateY(1px); }
+
+/* ---------- Corrigeren ---------- */
+
+.corrigeren {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--paneel-rand);
+}
+
+.corrigeren summary {
+  color: var(--tekst-zacht);
+  font-size: .92rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.corrigeren summary:hover { color: var(--roze); }
+
+.corrigeren .uitleg {
+  margin: 10px 0 14px;
+  color: var(--tekst-zacht);
+  font-size: .88rem;
+}
+
+.correctie-rij {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.correctie-rij label {
+  color: var(--tekst-zacht);
+  font-size: .92rem;
+}
+
+.teller {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.teller input {
+  width: 68px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.stap {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--paneel-rand);
+  border-radius: 12px;
+  background: rgba(13, 6, 22, .55);
+  color: var(--paars-licht);
+  font: inherit;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.stap:hover { border-color: var(--roze); color: var(--roze); }
+.stap:active { transform: translateY(1px); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

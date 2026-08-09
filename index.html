@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#160a24">
+<title>Ida en Chris Vakantie Spelletjes</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎀</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="kop">
+    <svg class="strik" viewBox="0 0 64 46" aria-hidden="true" focusable="false">
+      <path class="lint" d="M31 22 22 45l9-6 3-12Z"/>
+      <path class="lint" d="M33 22 43 44l-9-5-4-12Z"/>
+      <path d="M32 20C23 4 3 5 5 20c-2 15 18 16 27 0Z"/>
+      <path d="M32 20c9-16 29-15 27 0 2 15-18 16-27 0Z"/>
+      <circle class="knoop" cx="32" cy="20" r="6.5"/>
+    </svg>
+    <h1>Ida en Chris Vakantie Spelletjes</h1>
+  </header>
+
+  <p class="opslag-waarschuwing" id="opslag-waarschuwing" hidden>
+    Let op: dit toestel bewaart niets. De standen zijn weg zodra je de app sluit.
+  </p>
+
+  <nav class="tabbladen" role="tablist" aria-label="Tabbladen">
+    <button type="button" role="tab" id="tab-alle" class="tabblad"
+            aria-selected="true" aria-controls="paneel-alle">Alle spellen</button>
+    <button type="button" role="tab" id="tab-selectie" class="tabblad"
+            aria-selected="false" aria-controls="paneel-selectie" tabindex="-1">Spelselectie</button>
+  </nav>
+
+  <main>
+
+    <!-- Tabblad: alle spellen -->
+    <section id="paneel-alle" role="tabpanel" aria-labelledby="tab-alle" class="paneel">
+      <ul class="spellenlijst" id="spellenlijst"></ul>
+
+      <p class="leeg" id="lijst-leeg" hidden>
+        De Spellenlijst is leeg. Voeg hieronder jullie eerste spel toe.
+      </p>
+
+      <div class="beheer">
+        <button type="button" class="beheer-knop" id="beheer-knop" aria-expanded="false">
+          Spellen beheren
+        </button>
+
+        <form class="toevoegen" id="toevoeg-formulier" hidden>
+          <label class="veld-label" for="nieuwe-naam">Nieuw spel</label>
+          <div class="toevoeg-rij">
+            <input type="text" id="nieuwe-naam" name="nieuwe-naam" autocomplete="off"
+                   placeholder="Naam van het spel" maxlength="60">
+            <button type="submit" class="primair">Toevoegen</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Tabblad: spelselectie -->
+    <section id="paneel-selectie" role="tabpanel" aria-labelledby="tab-selectie" class="paneel" hidden>
+      <p class="veld-label">Kies een spel</p>
+      <div class="spelkiezer" id="spelkiezer"></div>
+
+      <p class="leeg" id="kiezer-leeg" hidden>
+        Er staan nog geen spellen in de Spellenlijst. Voeg er eerst één toe op het
+        tabblad "Alle spellen".
+      </p>
+
+      <div class="gekozen-spel" id="gekozen-spel" hidden>
+        <h2 id="gekozen-naam"></h2>
+
+        <div class="stand" aria-live="polite">
+          <div class="speler">
+            <span class="speler-naam">Chris</span>
+            <span class="punten" id="stand-chris">0</span>
+          </div>
+          <span class="streep" aria-hidden="true">-</span>
+          <div class="speler">
+            <span class="speler-naam">Ida</span>
+            <span class="punten" id="stand-ida">0</span>
+          </div>
+        </div>
+
+        <div class="wint-knoppen">
+          <button type="button" class="wint chris" id="chris-wint">Chris wint</button>
+          <button type="button" class="wint ida" id="ida-wint">Ida wint</button>
+        </div>
+
+        <details class="corrigeren" id="corrigeren">
+          <summary>Stand corrigeren</summary>
+          <p class="uitleg">Pas hier het aantal overwinningen aan. Wijzigingen worden meteen bewaard.</p>
+
+          <div class="correctie-rij">
+            <label for="correctie-chris">Overwinningen Chris</label>
+            <div class="teller">
+              <button type="button" class="stap" data-speler="chris" data-stap="-1"
+                      aria-label="Eén overwinning van Chris eraf">−</button>
+              <input type="number" id="correctie-chris" inputmode="numeric" min="0" step="1" value="0">
+              <button type="button" class="stap" data-speler="chris" data-stap="1"
+                      aria-label="Eén overwinning bij Chris erbij">+</button>
+            </div>
+          </div>
+
+          <div class="correctie-rij">
+            <label for="correctie-ida">Overwinningen Ida</label>
+            <div class="teller">
+              <button type="button" class="stap" data-speler="ida" data-stap="-1"
+                      aria-label="Eén overwinning van Ida eraf">−</button>
+              <input type="number" id="correctie-ida" inputmode="numeric" min="0" step="1" value="0">
+              <button type="button" class="stap" data-speler="ida" data-stap="1"
+                      aria-label="Eén overwinning bij Ida erbij">+</button>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

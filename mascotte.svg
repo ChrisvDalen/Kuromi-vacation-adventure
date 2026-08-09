@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Chibi konijntje met zwarte narrenmuts en roze doodshoofd">
+  <defs>
+    <radialGradient id="plaat" cx="50%" cy="40%" r="65%">
+      <stop offset="0" stop-color="#ffdcee"/>
+      <stop offset="1" stop-color="#f7b6d7"/>
+    </radialGradient>
+    <radialGradient id="vacht" cx="36%" cy="28%" r="78%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e3d5f2"/>
+    </radialGradient>
+    <radialGradient id="kap" cx="34%" cy="22%" r="82%">
+      <stop offset="0" stop-color="#3d2b57"/>
+      <stop offset="1" stop-color="#130b20"/>
+    </radialGradient>
+    <clipPath id="rand">
+      <circle cx="60" cy="60" r="59"/>
+    </clipPath>
+  </defs>
+
+  <!-- Solid light pink achtergrond, als een toy-render -->
+  <circle cx="60" cy="60" r="59" fill="url(#plaat)"/>
+
+  <g clip-path="url(#rand)">
+
+  <!-- Oren (achter de kop) -->
+  <g transform="rotate(-13 45 27)">
+    <ellipse cx="45" cy="27" rx="8.5" ry="19" fill="url(#vacht)"/>
+    <ellipse cx="45" cy="28" rx="4.2" ry="12.5" fill="#ff9ed4"/>
+  </g>
+  <g transform="rotate(13 75 27)">
+    <ellipse cx="75" cy="27" rx="8.5" ry="19" fill="url(#vacht)"/>
+    <ellipse cx="75" cy="28" rx="4.2" ry="12.5" fill="#ff9ed4"/>
+  </g>
+
+  <!-- Duivelsstaart -->
+  <path d="M82 113C99 114 108 101 104 92" fill="none" stroke="#1b1030" stroke-width="5.5" stroke-linecap="round"/>
+  <path d="M104 78 111 91 97 91Z" fill="#1b1030"/>
+
+  <!-- Lijfje -->
+  <path d="M60 95c-21 0-29 11-29 24h58c0-13-8-24-29-24Z" fill="url(#vacht)"/>
+
+  <!-- Kop -->
+  <ellipse cx="60" cy="68" rx="35" ry="31" fill="url(#vacht)"/>
+
+  <!-- Narrenmuts -->
+  <path d="M31 57C16 60 9 72 11 80c4-4 8-10 13-14Z" fill="url(#kap)"/>
+  <path d="M89 57c15 3 22 15 20 23-4-4-8-10-13-14Z" fill="url(#kap)"/>
+  <path d="M25 68c0-28 15-35 35-35s35 7 35 35c-7-6-14-10-22-11-5-1-8 2-13 2s-8-3-13-2c-8 1-15 5-22 11Z" fill="url(#kap)"/>
+  <ellipse cx="41" cy="45" rx="12" ry="5.5" fill="#fff" opacity=".16" transform="rotate(-24 41 45)"/>
+  <circle cx="11" cy="81" r="5.5" fill="url(#kap)"/>
+  <circle cx="109" cy="81" r="5.5" fill="url(#kap)"/>
+
+  <!-- Roze doodshoofd op de muts -->
+  <ellipse cx="60" cy="44" rx="9" ry="8" fill="#ff9ed4"/>
+  <rect x="54.5" y="48" width="11" height="7.5" rx="3.2" fill="#ff9ed4"/>
+  <ellipse cx="56.6" cy="43.4" rx="2.5" ry="2.9" fill="#2a1240"/>
+  <ellipse cx="63.4" cy="43.4" rx="2.5" ry="2.9" fill="#2a1240"/>
+  <path d="M60 46.5 61.8 49.6h-3.6Z" fill="#2a1240"/>
+
+  <!-- Ondeugende wenkbrauwen -->
+  <path d="M41 63.5 50 66.5" stroke="#2a1240" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M79 63.5 70 66.5" stroke="#2a1240" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- Gezicht -->
+  <ellipse cx="33" cy="80" rx="7.5" ry="4.5" fill="#ff8fd0" opacity=".7"/>
+  <ellipse cx="87" cy="80" rx="7.5" ry="4.5" fill="#ff8fd0" opacity=".7"/>
+  <ellipse cx="47" cy="73" rx="6" ry="7" fill="#1b1030"/>
+  <ellipse cx="73" cy="73" rx="6" ry="7" fill="#1b1030"/>
+  <circle cx="44.8" cy="70.2" r="2.3" fill="#fff"/>
+  <circle cx="70.8" cy="70.2" r="2.3" fill="#fff"/>
+  <circle cx="49" cy="76" r="1.1" fill="#fff" opacity=".65"/>
+  <circle cx="75" cy="76" r="1.1" fill="#fff" opacity=".65"/>
+  <path d="M53 81c3 5 11 5 14 0" fill="none" stroke="#1b1030" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M63.5 84 66 88 61 87.6Z" fill="#fff"/>
+
+  </g>
+</svg>

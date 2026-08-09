@@ -1,6 +1,7 @@
 /* Ida en Chris Vakantie Spelletjes
-   Kuromi-geïnspireerde stijl: paars/zwart, roze accenten, strikjes.
-   Eigen vormgeving — geen officiële licentie-illustraties. */
+   Vormgeving volgt de stijlprompt in STYLE.md: pastel goth, vibrant purple and
+   black, 3D vinyl toy met smooth glossy finish en soft studio lighting.
+   Alle illustraties zijn eigen werk — geen officiële licentie-illustraties. */
 
 :root {
   --nacht:        #160a24;
@@ -15,6 +16,13 @@
   --tekst-zacht:  #b9a3d6;
   --ronding:      18px;
   --schaduw:      0 6px 20px rgba(0, 0, 0, .45);
+
+  /* 3D vinyl toy: harde glans langs de bovenrand, zachte schaduw langs de onderrand,
+     zodat elk vlak leest als een glad gegoten oppervlak. */
+  --glans:        inset 0 1px 0 rgba(255, 255, 255, .38),
+                  inset 0 -4px 10px rgba(0, 0, 0, .28);
+  --glans-zacht:  inset 0 1px 0 rgba(255, 255, 255, .12),
+                  inset 0 -3px 9px rgba(0, 0, 0, .22);
 }
 
 * { box-sizing: border-box; }
@@ -49,16 +57,14 @@ body {
   margin-bottom: 20px;
 }
 
-.strik {
+.mascotte {
   flex: 0 0 auto;
-  width: 54px;
-  height: 39px;
-  filter: drop-shadow(0 2px 6px rgba(255, 143, 208, .35));
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  /* Zachte studiobelichting: roze afstraling plus een diepe slagschaduw. */
+  box-shadow: 0 6px 18px rgba(255, 143, 208, .3), 0 2px 7px rgba(0, 0, 0, .5);
 }
-
-.strik path { fill: var(--roze); }
-.strik .lint { fill: var(--roze-diep); }
-.strik .knoop { fill: var(--roze-diep); }
 
 h1 {
   margin: 0;
@@ -106,7 +112,7 @@ h1 {
 .tabblad[aria-selected="true"] {
   background: linear-gradient(160deg, var(--paars), var(--roze-diep));
   color: #fff;
-  box-shadow: var(--schaduw);
+  box-shadow: var(--glans), var(--schaduw);
 }
 
 /* ---------- Panelen ---------- */
@@ -153,7 +159,7 @@ h1 {
   background: linear-gradient(160deg, var(--paneel), #1b0e2d);
   border: 1px solid var(--paneel-rand);
   border-radius: var(--ronding);
-  box-shadow: var(--schaduw);
+  box-shadow: var(--glans-zacht), var(--schaduw);
 }
 
 .spel-rij .spel-naam {
@@ -269,7 +275,7 @@ summary:focus-visible {
   font: inherit;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: var(--schaduw);
+  box-shadow: var(--glans), var(--schaduw);
 }
 
 .primair:active { transform: translateY(1px); }
@@ -304,6 +310,7 @@ summary:focus-visible {
   background: linear-gradient(160deg, var(--paars), var(--roze-diep));
   border-color: transparent;
   color: #fff;
+  box-shadow: var(--glans);
 }
 
 /* ---------- Gekozen spel ---------- */
@@ -314,8 +321,8 @@ summary:focus-visible {
   padding: 20px 18px;
   background: linear-gradient(165deg, var(--paneel), #170c26);
   border: 1px solid var(--paneel-rand);
-  border-radius: 24px;
-  box-shadow: var(--schaduw);
+  border-radius: 26px;
+  box-shadow: var(--glans-zacht), var(--schaduw);
 }
 
 .gekozen-spel h2 {
@@ -378,7 +385,7 @@ summary:focus-visible {
   font-size: 1.02rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: var(--schaduw);
+  box-shadow: var(--glans), var(--schaduw);
 }
 
 .wint.chris { background: linear-gradient(160deg, #7c3aed, #4c1d95); }

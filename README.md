@@ -40,12 +40,21 @@ leidend, ook als die leeg is.
 
 ## Bestanden
 
-| Bestand      | Inhoud                                                    |
-| ------------ | --------------------------------------------------------- |
-| `index.html` | Structuur van de twee tabbladen                            |
-| `styles.css` | Kuromi-geïnspireerde vormgeving (paars/zwart, eigen strik) |
-| `app.js`     | Spellenlijst, Standen en persistente opslag                |
-| `spec.md`    | De formele specificatie waar de app op gebouwd is          |
+| Bestand        | Inhoud                                                     |
+| -------------- | ---------------------------------------------------------- |
+| `index.html`   | Structuur van de twee tabbladen                             |
+| `styles.css`   | Vormgeving volgens de stijlgids                             |
+| `app.js`       | Spellenlijst, Standen en persistente opslag                 |
+| `mascotte.svg` | De mascotte, met de hand opgebouwde SVG                     |
+| `STYLE.md`     | De stijlprompt en hoe die naar de UI vertaalt               |
+| `spec.md`      | De formele specificatie waar de app op gebouwd is           |
+
+## Vormgeving
+
+De visuele richting ligt vast in [`STYLE.md`](STYLE.md): een chibi wit konijntje met
+zwarte narrenmuts en roze doodshoofd, pastel goth, paars/zwart, 3D vinyl toy met
+glossy finish. Die prompt is leidend voor nieuwe schermen en illustraties. Alle
+illustraties in deze repo zijn eigen werk.
 
 ## Achtergrond
 

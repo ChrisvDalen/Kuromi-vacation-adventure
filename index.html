@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#160a24">
 <title>Ida en Chris Vakantie Spelletjes</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎀</text></svg>">
+<link rel="icon" href="mascotte.svg" type="image/svg+xml">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,13 +13,7 @@
 <div class="app">
 
   <header class="kop">
-    <svg class="strik" viewBox="0 0 64 46" aria-hidden="true" focusable="false">
-      <path class="lint" d="M31 22 22 45l9-6 3-12Z"/>
-      <path class="lint" d="M33 22 43 44l-9-5-4-12Z"/>
-      <path d="M32 20C23 4 3 5 5 20c-2 15 18 16 27 0Z"/>
-      <path d="M32 20c9-16 29-15 27 0 2 15-18 16-27 0Z"/>
-      <circle class="knoop" cx="32" cy="20" r="6.5"/>
-    </svg>
+    <img class="mascotte" src="mascotte.svg" alt="" width="120" height="120">
     <h1>Ida en Chris Vakantie Spelletjes</h1>
   </header>
 
@@ -95,22 +89,24 @@
           <p class="uitleg">Pas hier het aantal overwinningen aan. Wijzigingen worden meteen bewaard.</p>
 
           <div class="correctie-rij">
-            <label for="correctie-chris">Overwinningen Chris</label>
+            <label for="correctie-chris">Chris</label>
             <div class="teller">
               <button type="button" class="stap" data-speler="chris" data-stap="-1"
                       aria-label="Eén overwinning van Chris eraf">−</button>
-              <input type="number" id="correctie-chris" inputmode="numeric" min="0" step="1" value="0">
+              <input type="number" id="correctie-chris" inputmode="numeric" min="0" step="1" value="0"
+                     aria-label="Aantal overwinningen van Chris">
               <button type="button" class="stap" data-speler="chris" data-stap="1"
                       aria-label="Eén overwinning bij Chris erbij">+</button>
             </div>
           </div>
 
           <div class="correctie-rij">
-            <label for="correctie-ida">Overwinningen Ida</label>
+            <label for="correctie-ida">Ida</label>
             <div class="teller">
               <button type="button" class="stap" data-speler="ida" data-stap="-1"
                       aria-label="Eén overwinning van Ida eraf">−</button>
-              <input type="number" id="correctie-ida" inputmode="numeric" min="0" step="1" value="0">
+              <input type="number" id="correctie-ida" inputmode="numeric" min="0" step="1" value="0"
+                     aria-label="Aantal overwinningen van Ida">
               <button type="button" class="stap" data-speler="ida" data-stap="1"
                       aria-label="Eén overwinning bij Ida erbij">+</button>
             </div>

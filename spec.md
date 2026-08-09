@@ -120,8 +120,12 @@ Feature: Gegevens blijven bewaard tussen sessies
 Context: De app wordt gebruikt op één gedeeld toestel door Chris en Ida.
 - [ ] Geen synchronisatie tussen meerdere toestellen nodig
 - [ ] Er is altijd exact één Winnaar per Uitslag (Chris of Ida) — geen gelijkspel, geen scores
-- [ ] Visuele stijl: eigen Kuromi-geïnspireerde esthetiek (paars/zwart, schattig, strikjes-vibe), geen officiële licentie-illustraties
+- [ ] Visuele stijl: eigen Kuromi-geïnspireerde esthetiek volgens de stijlprompt in `STYLE.md` (lichtroze achtergrond, paars/zwart als accent, pastel goth, schattig), geen officiële licentie-illustraties
 - [ ] Titel bovenaan de app: "Ida en Chris Vakantie Spelletjes"
+
+> Noot: het criterium over de visuele stijl luidde oorspronkelijk "paars/zwart,
+> schattig, strikjes-vibe". Dat is na het opstellen van deze spec aangescherpt tot de
+> stijlprompt in `STYLE.md`, met een lichtroze achtergrond in plaats van een donkere.
 
 ---
 

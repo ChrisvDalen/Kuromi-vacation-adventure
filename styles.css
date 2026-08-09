@@ -1,28 +1,35 @@
 /* Ida en Chris Vakantie Spelletjes
-   Vormgeving volgt de stijlprompt in STYLE.md: pastel goth, vibrant purple and
-   black, 3D vinyl toy met smooth glossy finish en soft studio lighting.
+   Vormgeving volgt de stijlprompt in STYLE.md: pastel goth op een solid light
+   pink achtergrond, met vibrant purple en black als accenten, 3D vinyl toy met
+   smooth glossy finish en soft studio lighting.
    Alle illustraties zijn eigen werk — geen officiële licentie-illustraties. */
 
 :root {
-  --nacht:        #160a24;
-  --nacht-diep:   #0d0616;
-  --paneel:       #24123a;
-  --paneel-rand:  #3d2159;
-  --paars:        #8b5cf6;
-  --paars-licht:  #c4a5ff;
-  --roze:         #ff8fd0;
-  --roze-diep:    #e4529f;
-  --tekst:        #f3ebff;
-  --tekst-zacht:  #b9a3d6;
+  --roze-vlak:    #ffe1f0;  /* solid light pink: de achtergrond van de app */
+  --roze-diep:    #d6357f;
+  --paneel:       #fffafd;
+  --paneel-2:     #fff0f8;
+  --paneel-rand:  #f7c4df;
+  --paars-diep:   #6d28d9;
+  --paars-tint:   #f0e7ff;
+  --tekst:        #2a1240;  /* het zwart uit de prompt, met een paarse ondertoon */
+  --tekst-zacht:  #6b4d85;
   --ronding:      18px;
-  --schaduw:      0 6px 20px rgba(0, 0, 0, .45);
 
-  /* 3D vinyl toy: harde glans langs de bovenrand, zachte schaduw langs de onderrand,
-     zodat elk vlak leest als een glad gegoten oppervlak. */
-  --glans:        inset 0 1px 0 rgba(255, 255, 255, .38),
-                  inset 0 -4px 10px rgba(0, 0, 0, .28);
-  --glans-zacht:  inset 0 1px 0 rgba(255, 255, 255, .12),
-                  inset 0 -3px 9px rgba(0, 0, 0, .22);
+  /* Soft studio lighting: brede, warme schaduw in plaats van hard zwart. */
+  --schaduw:      0 6px 18px rgba(164, 54, 118, .16);
+  --schaduw-diep: 0 8px 22px rgba(120, 30, 90, .26);
+
+  /* Knopvlakken. Donker genoeg gehouden zodat witte tekst erop leesbaar blijft. */
+  --knop-paars:   #7c3aed;
+  --knop-roze:    #c2185b;
+
+  /* 3D vinyl toy: glans langs de bovenrand, schaduw langs de onderrand, zodat
+     elk vlak leest als een glad gegoten oppervlak. */
+  --glans:        inset 0 1px 0 rgba(255, 255, 255, .45),
+                  inset 0 -4px 10px rgba(0, 0, 0, .22);
+  --glans-licht:  inset 0 1px 0 rgba(255, 255, 255, .95),
+                  inset 0 -3px 9px rgba(214, 53, 127, .09);
 }
 
 * { box-sizing: border-box; }
@@ -33,9 +40,8 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(1100px 600px at 12% -10%, #3a1a5c 0%, transparent 60%),
-    radial-gradient(900px 500px at 92% 8%, #4a1440 0%, transparent 55%),
-    var(--nacht-diep);
+    radial-gradient(900px 500px at 88% 4%, rgba(196, 165, 255, .38) 0%, transparent 58%),
+    var(--roze-vlak);
   color: var(--tekst);
   font-family: "Trebuchet MS", "Segoe UI", system-ui, -apple-system, sans-serif;
   font-size: 17px;
@@ -62,8 +68,9 @@ body {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  /* Zachte studiobelichting: roze afstraling plus een diepe slagschaduw. */
-  box-shadow: 0 6px 18px rgba(255, 143, 208, .3), 0 2px 7px rgba(0, 0, 0, .5);
+  /* Witte ring, anders loopt de roze plaat van de mascotte over in de achtergrond. */
+  border: 3px solid #fff;
+  box-shadow: var(--schaduw);
 }
 
 h1 {
@@ -71,16 +78,15 @@ h1 {
   font-size: 1.35rem;
   line-height: 1.2;
   letter-spacing: .2px;
-  text-shadow: 0 2px 10px rgba(139, 92, 246, .5);
 }
 
 .opslag-waarschuwing {
   margin: 0 0 16px;
   padding: 10px 14px;
   border-radius: 12px;
-  background: #4a1230;
-  border: 1px solid #7d2450;
-  color: #ffd0e6;
+  background: #ffe0e6;
+  border: 1px solid #f0a5b6;
+  color: #8c1233;
   font-size: .9rem;
 }
 
@@ -91,9 +97,10 @@ h1 {
   gap: 6px;
   padding: 6px;
   margin-bottom: 18px;
-  background: rgba(13, 6, 22, .6);
+  background: var(--paneel);
   border: 1px solid var(--paneel-rand);
   border-radius: var(--ronding);
+  box-shadow: var(--glans-licht), var(--schaduw);
 }
 
 .tabblad {
@@ -110,9 +117,9 @@ h1 {
 }
 
 .tabblad[aria-selected="true"] {
-  background: linear-gradient(160deg, var(--paars), var(--roze-diep));
+  background: linear-gradient(160deg, var(--knop-paars), var(--knop-roze));
   color: #fff;
-  box-shadow: var(--glans), var(--schaduw);
+  box-shadow: var(--glans), var(--schaduw-diep);
 }
 
 /* ---------- Panelen ---------- */
@@ -131,7 +138,7 @@ h1 {
 .leeg {
   margin: 0;
   padding: 22px 18px;
-  border: 1px dashed var(--paneel-rand);
+  border: 2px dashed var(--paneel-rand);
   border-radius: var(--ronding);
   color: var(--tekst-zacht);
   text-align: center;
@@ -156,10 +163,10 @@ h1 {
   align-items: center;
   gap: 12px;
   padding: 14px 16px;
-  background: linear-gradient(160deg, var(--paneel), #1b0e2d);
+  background: linear-gradient(165deg, var(--paneel), var(--paneel-2));
   border: 1px solid var(--paneel-rand);
   border-radius: var(--ronding);
-  box-shadow: var(--glans-zacht), var(--schaduw);
+  box-shadow: var(--glans-licht), var(--schaduw);
 }
 
 .spel-rij .spel-naam {
@@ -185,9 +192,9 @@ h1 {
   flex: 0 0 auto;
   padding: 5px 12px;
   border-radius: 999px;
-  background: rgba(139, 92, 246, .18);
-  border: 1px solid rgba(196, 165, 255, .3);
-  color: var(--paars-licht);
+  background: var(--paars-tint);
+  border: 1px solid #d9c6ff;
+  color: var(--paars-diep);
   font-size: .9rem;
   font-weight: 700;
   white-space: nowrap;
@@ -203,15 +210,15 @@ h1 {
   place-items: center;
   border: 1px solid var(--paneel-rand);
   border-radius: 11px;
-  background: rgba(13, 6, 22, .55);
-  color: var(--paars-licht);
+  background: #fff;
+  color: var(--paars-diep);
   font: inherit;
   font-size: 1rem;
   cursor: pointer;
 }
 
-.rij-knop:hover { border-color: var(--roze); color: var(--roze); }
-.rij-knop.verwijder:hover { border-color: #ff6b8f; color: #ff6b8f; }
+.rij-knop:hover { border-color: var(--roze-diep); color: var(--roze-diep); }
+.rij-knop.verwijder:hover { border-color: #c2185b; color: #c2185b; }
 
 .naam-invoer {
   flex: 1;
@@ -227,15 +234,16 @@ h1 {
   padding: 11px;
   border: 1px solid var(--paneel-rand);
   border-radius: 14px;
-  background: rgba(36, 18, 58, .5);
+  background: var(--paneel);
   color: var(--tekst-zacht);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
+  box-shadow: var(--glans-licht);
 }
 
-.beheer-knop:hover { color: var(--roze); border-color: var(--roze-diep); }
-.beheer-knop[aria-expanded="true"] { color: var(--roze); border-color: var(--roze-diep); }
+.beheer-knop:hover { color: var(--roze-diep); border-color: var(--roze-diep); }
+.beheer-knop[aria-expanded="true"] { color: var(--roze-diep); border-color: var(--roze-diep); }
 
 .toevoegen { margin-top: 14px; }
 .toevoegen[hidden] { display: none; }
@@ -248,7 +256,7 @@ h1 {
 input[type="text"],
 input[type="number"] {
   padding: 11px 14px;
-  background: var(--nacht);
+  background: #fff;
   border: 1px solid var(--paneel-rand);
   border-radius: 13px;
   color: var(--tekst);
@@ -257,12 +265,12 @@ input[type="number"] {
 
 input[type="text"] { flex: 1; min-width: 0; }
 
-input::placeholder { color: #6f5a8c; }
+input::placeholder { color: #8f72aa; }
 
 input:focus-visible,
 button:focus-visible,
 summary:focus-visible {
-  outline: 2px solid var(--roze);
+  outline: 2px solid var(--roze-diep);
   outline-offset: 2px;
 }
 
@@ -270,12 +278,12 @@ summary:focus-visible {
   padding: 11px 18px;
   border: 0;
   border-radius: 13px;
-  background: linear-gradient(160deg, var(--paars), var(--roze-diep));
+  background: linear-gradient(160deg, var(--knop-paars), var(--knop-roze));
   color: #fff;
   font: inherit;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: var(--glans), var(--schaduw);
+  box-shadow: var(--glans), var(--schaduw-diep);
 }
 
 .primair:active { transform: translateY(1px); }
@@ -295,22 +303,23 @@ summary:focus-visible {
   padding: 9px 15px;
   border: 1px solid var(--paneel-rand);
   border-radius: 999px;
-  background: rgba(36, 18, 58, .65);
-  color: var(--tekst-zacht);
+  background: var(--paneel);
+  color: var(--tekst);
   font: inherit;
   font-weight: 700;
   font-size: .95rem;
   cursor: pointer;
+  box-shadow: var(--glans-licht);
   transition: background .15s, color .15s, border-color .15s;
 }
 
-.kies-knop:hover { border-color: var(--roze-diep); color: var(--tekst); }
+.kies-knop:hover { border-color: var(--roze-diep); }
 
 .kies-knop[aria-pressed="true"] {
-  background: linear-gradient(160deg, var(--paars), var(--roze-diep));
+  background: linear-gradient(160deg, var(--knop-paars), var(--knop-roze));
   border-color: transparent;
   color: #fff;
-  box-shadow: var(--glans);
+  box-shadow: var(--glans), var(--schaduw);
 }
 
 /* ---------- Gekozen spel ---------- */
@@ -319,10 +328,10 @@ summary:focus-visible {
 
 .gekozen-spel {
   padding: 20px 18px;
-  background: linear-gradient(165deg, var(--paneel), #170c26);
+  background: linear-gradient(170deg, var(--paneel), var(--paneel-2));
   border: 1px solid var(--paneel-rand);
   border-radius: 26px;
-  box-shadow: var(--glans-zacht), var(--schaduw);
+  box-shadow: var(--glans-licht), var(--schaduw);
 }
 
 .gekozen-spel h2 {
@@ -359,13 +368,14 @@ summary:focus-visible {
   font-size: 3rem;
   font-weight: 700;
   line-height: 1;
-  color: var(--roze);
-  text-shadow: 0 3px 16px rgba(255, 143, 208, .4);
+  color: var(--roze-diep);
   font-variant-numeric: tabular-nums;
 }
 
+.speler:first-child .punten { color: var(--paars-diep); }
+
 .streep {
-  color: var(--paneel-rand);
+  color: #c9a9e0;
   font-size: 1.8rem;
   font-weight: 700;
 }
@@ -385,11 +395,11 @@ summary:focus-visible {
   font-size: 1.02rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: var(--glans), var(--schaduw);
+  box-shadow: var(--glans), var(--schaduw-diep);
 }
 
 .wint.chris { background: linear-gradient(160deg, #7c3aed, #4c1d95); }
-.wint.ida   { background: linear-gradient(160deg, #ff8fd0, #b5257a); }
+.wint.ida   { background: linear-gradient(160deg, #cf2f78, #8e1a52); }
 .wint:active { transform: translateY(1px); }
 
 /* ---------- Corrigeren ---------- */
@@ -407,7 +417,7 @@ summary:focus-visible {
   cursor: pointer;
 }
 
-.corrigeren summary:hover { color: var(--roze); }
+.corrigeren summary:hover { color: var(--roze-diep); }
 
 .corrigeren .uitleg {
   margin: 10px 0 14px;
@@ -426,6 +436,7 @@ summary:focus-visible {
 .correctie-rij label {
   color: var(--tekst-zacht);
   font-size: .92rem;
+  font-weight: 700;
 }
 
 .teller {
@@ -445,15 +456,16 @@ summary:focus-visible {
   height: 38px;
   border: 1px solid var(--paneel-rand);
   border-radius: 12px;
-  background: rgba(13, 6, 22, .55);
-  color: var(--paars-licht);
+  background: #fff;
+  color: var(--paars-diep);
   font: inherit;
   font-size: 1.15rem;
   font-weight: 700;
   cursor: pointer;
+  box-shadow: var(--glans-licht);
 }
 
-.stap:hover { border-color: var(--roze); color: var(--roze); }
+.stap:hover { border-color: var(--roze-diep); color: var(--roze-diep); }
 .stap:active { transform: translateY(1px); }
 
 @media (prefers-reduced-motion: reduce) {

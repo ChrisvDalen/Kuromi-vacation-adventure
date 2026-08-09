@@ -20,26 +20,32 @@ background.
 
 | Uit de prompt              | Vertaling naar het scherm                                                                  |
 | -------------------------- | ------------------------------------------------------------------------------------------ |
-| vibrant purple and black   | Donkere paars-zwarte basis; paars en roze zijn de accenten, nooit grijs                      |
-| pastel goth                | Zacht roze en lila tégen diep zwartpaars — schattig en donker tegelijk, geen van beide alleen |
+| vibrant purple and black   | Paars en roze zijn de accenten en het zwart is de tekstkleur — nooit grijs                    |
+| pastel goth                | Zacht roze en lila tégen diep zwartpaarse tekst — schattig en donker tegelijk                 |
 | 3D vinyl toy, glossy       | Elk vlak leest als gegoten plastic: glans langs de bovenrand, schaduw langs de onderrand      |
-| soft studio lighting       | Zachte, wijde slagschaduwen en een roze afstraling; geen harde randen of felle contrasten     |
+| soft studio lighting       | Zachte, wijde en warm getinte slagschaduwen; geen harde randen of hard zwart                  |
 | kawaii, chibi              | Royale afronding (13–26px), bolle knoppen, vriendelijke ronde vormen                         |
 | playful, mischievous       | Speelse details mogen, maar nooit ten koste van de leesbaarheid van de Stand                 |
-| solid light pink background| De roze vlakke achtergrond hoort bij de mascotte-render, niet bij het app-venster            |
+| solid light pink background| De achtergrond van de app zelf: één vlakke lichtroze laag, met een zweem lila voor diepte      |
 
-De app zelf blijft dus donker paars/zwart — dat is ook wat de spec als acceptance
-criterium vastlegt. Het lichtroze is de plaat waar de mascotte op staat, zoals bij
-een toy-render. Wil je ooit een licht thema, dan is dat een aparte beslissing.
+De app staat dus op een lichtroze vlak, met paars en zwart als accenten: donkere
+paarszwarte tekst, en paars-naar-roze verlopen op de knoppen en het actieve tabblad.
+Het paneelvlak is bijna wit met een roze zweem, zodat de kaarten van de achtergrond
+loskomen zonder hard wit te worden.
+
+Op knopvlakken staat witte tekst, dus die verlopen zijn bewust dieper gehouden
+(`--knop-paars`, `--knop-roze`) dan de accentkleuren die op de lichte achtergrond
+worden gebruikt. Alle tekstcombinaties halen de WCAG AA-norm; controleer dat opnieuw
+als je aan de kleuren draait.
 
 ## Design tokens
 
 De kleuren en effecten staan als custom properties boven in `styles.css`
-(`--paars`, `--roze`, `--nacht`, `--glans`, …). Gebruik die tokens in plaats van
-nieuwe losse kleurwaarden, zodat de app één materiaal blijft.
+(`--roze-vlak`, `--paars-diep`, `--tekst`, `--glans`, …). Gebruik die tokens in plaats
+van nieuwe losse kleurwaarden, zodat de app één materiaal blijft.
 
-De glans zit in twee tokens: `--glans` voor knoppen en actieve elementen
-(uitgesproken plastic-glans) en `--glans-zacht` voor panelen en rijen.
+De glans zit in twee tokens: `--glans` voor de donkere knopvlakken (uitgesproken
+plastic-glans) en `--glans-licht` voor de lichte panelen, rijen en invoervelden.
 
 ## De mascotte
 

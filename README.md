@@ -52,9 +52,9 @@ leidend, ook als die leeg is.
 ## Vormgeving
 
 De visuele richting ligt vast in [`STYLE.md`](STYLE.md): een chibi wit konijntje met
-zwarte narrenmuts en roze doodshoofd, pastel goth, paars/zwart, 3D vinyl toy met
-glossy finish. Die prompt is leidend voor nieuwe schermen en illustraties. Alle
-illustraties in deze repo zijn eigen werk.
+zwarte narrenmuts en roze doodshoofd, pastel goth, lichtroze achtergrond met paars en
+zwart als accenten, 3D vinyl toy met glossy finish. Die prompt is leidend voor nieuwe
+schermen en illustraties. Alle illustraties in deze repo zijn eigen werk.
 
 ## Achtergrond
 

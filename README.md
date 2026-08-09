@@ -2,10 +2,24 @@
 
 Een app om bij te houden wie welk spel wint tijdens de vakantie van Ida en Chris.
 
-## Openen
+## Op de iPhone zetten
 
-Zet de drie bestanden op een webserver (bijvoorbeeld GitHub Pages) en open `index.html`.
-Lokaal uitproberen kan met een simpele server vanuit deze map:
+De app staat online via GitHub Pages. Zet hem daarna op het beginscherm, dan opent
+hij schermvullend met een eigen icoon, zonder Safari-balken.
+
+1. **Pages aanzetten** (eenmalig): repo → **Settings** → **Pages** → onder *Build and
+   deployment* bij *Source* kiezen voor **Deploy from a branch**, branch
+   `claude/vakantie-spelletjes-spec-onyxeo` en map `/ (root)` → **Save**. Na een
+   paar minuten staat de app op
+   `https://chrisvdalen.github.io/Kuromi-vacation-adventure/`.
+2. **Op het beginscherm zetten**: open die link in **Safari** op de iPhone, tik op de
+   deelknop (het vierkantje met de pijl omhoog), scroll naar **Zet op beginscherm** en
+   tik op **Voeg toe**.
+
+Doe stap 2 in Safari, niet in Chrome — alleen Safari kan op iOS iets op het
+beginscherm zetten, en de standen worden per browser apart bewaard.
+
+## Lokaal uitproberen
 
 ```
 python3 -m http.server 8000
@@ -46,6 +60,8 @@ leidend, ook als die leeg is.
 | `styles.css`   | Vormgeving volgens de stijlgids                             |
 | `app.js`       | Spellenlijst, Standen en persistente opslag                 |
 | `mascotte.svg` | De mascotte, met de hand opgebouwde SVG                     |
+| `icoon-*.png`  | App-iconen voor het beginscherm, afgeleid van `mascotte.svg` |
+| `manifest.webmanifest` | Naam, kleuren en iconen voor de app op het beginscherm |
 | `STYLE.md`     | De stijlprompt en hoe die naar de UI vertaalt               |
 | `spec.md`      | De formele specificatie waar de app op gebouwd is           |
 

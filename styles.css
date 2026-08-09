@@ -34,7 +34,11 @@
 
 * { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+/* Ook op html, anders is de overscroll-rand op iOS wit in plaats van roze. */
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--roze-vlak);
+}
 
 body {
   margin: 0;
@@ -51,7 +55,10 @@ body {
 .app {
   max-width: 560px;
   margin: 0 auto;
-  padding: 20px 16px calc(40px + env(safe-area-inset-bottom));
+  /* Vanaf het beginscherm loopt de app tot achter de statusbalk en de home-indicator. */
+  padding:
+    calc(20px + env(safe-area-inset-top)) 16px
+    calc(40px + env(safe-area-inset-bottom));
 }
 
 /* ---------- Kop ---------- */

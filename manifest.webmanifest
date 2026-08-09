@@ -1,0 +1,16 @@
+{
+  "name": "Ida en Chris Vakantie Spelletjes",
+  "short_name": "Vakantie Spelletjes",
+  "description": "Bijhouden wie welk spel wint tijdens de vakantie.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffe1f0",
+  "theme_color": "#ffe1f0",
+  "icons": [
+    { "src": "icoon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icoon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icoon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

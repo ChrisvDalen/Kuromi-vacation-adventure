@@ -1,7 +1,8 @@
 /* Ida en Chris Vakantie Spelletjes
  *
- * Termen volgen de Ubiquitous Language: Spel, Spellenlijst, Winnaar, Stand,
- * Eindstand, Uitslag invoeren, Corrigeren, Persistente opslag.
+ * Termen volgen de Ubiquitous Language: Spel, Spellenlijst, Winnaar, Uitslag,
+ * Stand, Eindstand, Totaalscore, Uitgelicht/voorstaand, Profiel,
+ * Overzichtstabblad, Spel-tabblad, Corrigeren, Persistente opslag.
  *
  * Eén gedeeld toestel, dus alles staat lokaal in localStorage. Geen synchronisatie.
  */
@@ -118,15 +119,32 @@ function eindstandTekst(spel) {
   return 'Chris ' + spel.chris + ' - Ida ' + spel.ida;
 }
 
+/* Totaalscore: alle gewonnen potjes van één speler bij elkaar, over alle
+   spellen samen. Elk spel weegt even zwaar — er is geen weging per spel.
+   Wordt bij elke wijziging opnieuw uit de Standen afgeleid, nooit apart
+   opgeslagen, zodat een correctie de ranking vanzelf klopt. */
+function totaalscore(speler) {
+  return stand.spellen.reduce(function (som, spel) {
+    return som + spel[speler];
+  }, 0);
+}
+
 /* ------------------------------------------------------------------ *
  * Elementen
  * ------------------------------------------------------------------ */
 
 var el = {
-  tabAlle: document.getElementById('tab-alle'),
-  tabSelectie: document.getElementById('tab-selectie'),
-  paneelAlle: document.getElementById('paneel-alle'),
-  paneelSelectie: document.getElementById('paneel-selectie'),
+  tabOverzicht: document.getElementById('tab-overzicht'),
+  tabSpel: document.getElementById('tab-spel'),
+  paneelOverzicht: document.getElementById('paneel-overzicht'),
+  paneelSpel: document.getElementById('paneel-spel'),
+
+  profielChris: document.getElementById('profiel-chris'),
+  profielIda: document.getElementById('profiel-ida'),
+  totaalChris: document.getElementById('totaal-chris'),
+  totaalIda: document.getElementById('totaal-ida'),
+  badgeChris: document.getElementById('badge-chris'),
+  badgeIda: document.getElementById('badge-ida'),
 
   spellenlijst: document.getElementById('spellenlijst'),
   lijstLeeg: document.getElementById('lijst-leeg'),
@@ -151,27 +169,51 @@ var el = {
  * ------------------------------------------------------------------ */
 
 function toonTabblad(naam) {
-  var alle = naam === 'alle';
-  el.tabAlle.setAttribute('aria-selected', String(alle));
-  el.tabSelectie.setAttribute('aria-selected', String(!alle));
-  el.tabAlle.tabIndex = alle ? 0 : -1;
-  el.tabSelectie.tabIndex = alle ? -1 : 0;
-  el.paneelAlle.hidden = !alle;
-  el.paneelSelectie.hidden = alle;
+  var overzicht = naam === 'overzicht';
+  el.tabOverzicht.setAttribute('aria-selected', String(overzicht));
+  el.tabSpel.setAttribute('aria-selected', String(!overzicht));
+  el.tabOverzicht.tabIndex = overzicht ? 0 : -1;
+  el.tabSpel.tabIndex = overzicht ? -1 : 0;
+  el.paneelOverzicht.hidden = !overzicht;
+  el.paneelSpel.hidden = overzicht;
 }
 
-el.tabAlle.addEventListener('click', function () { toonTabblad('alle'); });
-el.tabSelectie.addEventListener('click', function () { toonTabblad('selectie'); });
+el.tabOverzicht.addEventListener('click', function () { toonTabblad('overzicht'); });
+el.tabSpel.addEventListener('click', function () { toonTabblad('spel'); });
 
 document.querySelector('.tabbladen').addEventListener('keydown', function (gebeurtenis) {
   if (gebeurtenis.key !== 'ArrowLeft' && gebeurtenis.key !== 'ArrowRight') return;
-  var naarAlle = el.tabAlle.getAttribute('aria-selected') === 'false';
-  toonTabblad(naarAlle ? 'alle' : 'selectie');
-  (naarAlle ? el.tabAlle : el.tabSelectie).focus();
+  var naarOverzicht = el.tabOverzicht.getAttribute('aria-selected') === 'false';
+  toonTabblad(naarOverzicht ? 'overzicht' : 'spel');
+  (naarOverzicht ? el.tabOverzicht : el.tabSpel).focus();
 });
 
 /* ------------------------------------------------------------------ *
- * Tabblad "alle spellen": Eindstand per spel + beheer
+ * Overzichtstabblad: Profielen met Totaalscore
+ * ------------------------------------------------------------------ */
+
+/* De speler met de hoogste Totaalscore wordt uitgelicht als "voorstaand".
+   Bij gelijke stand — ook 0 om 0, dus vóór het eerste potje — staat niemand
+   voor en wordt dus niemand uitgelicht. */
+function tekenRanking() {
+  var totalen = { chris: totaalscore('chris'), ida: totaalscore('ida') };
+  var voorstaand = null;
+  if (totalen.chris > totalen.ida) voorstaand = 'chris';
+  if (totalen.ida > totalen.chris) voorstaand = 'ida';
+
+  [['chris', el.profielChris, el.totaalChris, el.badgeChris],
+   ['ida', el.profielIda, el.totaalIda, el.badgeIda]].forEach(function (rij) {
+    var speler = rij[0];
+    var leidt = speler === voorstaand;
+
+    rij[2].textContent = String(totalen[speler]);
+    rij[1].classList.toggle('voorstaand', leidt);
+    rij[3].hidden = !leidt;
+  });
+}
+
+/* ------------------------------------------------------------------ *
+ * Overzichtstabblad: Eindstand per spel + beheer
  * ------------------------------------------------------------------ */
 
 function tekenSpellenlijst() {
@@ -301,7 +343,7 @@ el.toevoegFormulier.addEventListener('submit', function (gebeurtenis) {
 });
 
 /* ------------------------------------------------------------------ *
- * Tabblad spelselectie: spel kiezen, Uitslag invoeren, Corrigeren
+ * Spel-tabblad: spel kiezen, Uitslag invoeren, Corrigeren
  * ------------------------------------------------------------------ */
 
 function tekenSpelkiezer() {
@@ -356,7 +398,7 @@ function uitslagInvoeren(speler) {
   spel[speler] = spel[speler] + 1;
   bewaar();
   werkStandBij(true);
-  tekenSpellenlijst();
+  tekenOverzicht();
 }
 
 el.chrisWint.addEventListener('click', function () { uitslagInvoeren('chris'); });
@@ -371,7 +413,7 @@ function corrigeer(speler, invoer) {
   spel[speler] = invoer.value.trim() === '' ? 0 : heelGetal(invoer.value);
   bewaar();
   werkStandBij(false);
-  tekenSpellenlijst();
+  tekenOverzicht();
 }
 
 [['chris', el.correctieChris], ['ida', el.correctieIda]].forEach(function (paar) {
@@ -397,7 +439,7 @@ document.querySelectorAll('.stap').forEach(function (knop) {
     spel[speler] = Math.max(0, spel[speler] + Number(knop.dataset.stap));
     bewaar();
     werkStandBij(true);
-    tekenSpellenlijst();
+    tekenOverzicht();
   });
 });
 
@@ -405,8 +447,15 @@ document.querySelectorAll('.stap').forEach(function (knop) {
  * Start
  * ------------------------------------------------------------------ */
 
-function tekenAlles() {
+/* Alles op het overzichtstabblad wat van de Standen afhangt: de Totaalranking
+   wordt hier herberekend, dus elke wijziging van een Stand komt er vanzelf in. */
+function tekenOverzicht() {
+  tekenRanking();
   tekenSpellenlijst();
+}
+
+function tekenAlles() {
+  tekenOverzicht();
   tekenSpelkiezer();
   tekenGekozenSpel();
 }

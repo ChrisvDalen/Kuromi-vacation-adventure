@@ -1,24 +1,32 @@
 /* Ida en Chris Vakantie Spelletjes
-   Vormgeving volgt de stijlprompt in STYLE.md: pastel goth op een solid light
-   pink achtergrond, met vibrant purple en black als accenten, 3D vinyl toy met
-   smooth glossy finish en soft studio lighting.
+   Vormgeving volgt de stijlgids in STYLE.md (v2): pastel goth met lila als
+   hoofdaccent, schedeltjes/strikjes-details in roze en zwart als accent,
+   3D vinyl toy met smooth glossy finish en soft studio lighting, op een
+   achtergrondpatroon van hartjes en kleine konijntjes.
    Alle illustraties zijn eigen werk — geen officiële licentie-illustraties. */
 
 :root {
-  --roze-vlak:    #ffe1f0;  /* solid light pink: de achtergrond van de app */
-  --roze-diep:    #d6357f;
-  --paneel:       #fffafd;
-  --paneel-2:     #fff0f8;
-  --paneel-rand:  #f7c4df;
+  --lila-vlak:    #efe4ff;  /* de achtergrond van de app: lila is hoofdaccent */
+  --lila:         #8b52d6;
+  --lila-tint:    #f3ecff;
+  --lila-rand:    #ddc9f7;
   --paars-diep:   #6d28d9;
-  --paars-tint:   #f0e7ff;
+  --roze-diep:    #d6357f;  /* strikjes/schedeltjes-accent, blijft behouden */
+  --paneel:       #fdfaff;
+  --paneel-2:     #f6efff;
+  --paneel-rand:  #e2d1f8;
   --tekst:        #2a1240;  /* het zwart uit de prompt, met een paarse ondertoon */
-  --tekst-zacht:  #6b4d85;
+  --tekst-zacht:  #614481;
   --ronding:      18px;
 
+  /* Uitlichting van de voorstaande speler: goud tegen het lila. */
+  --goud:         #ffd76e;
+  --goud-diep:    #b8791b;
+  --goud-tekst:   #4a2f00;
+
   /* Soft studio lighting: brede, warme schaduw in plaats van hard zwart. */
-  --schaduw:      0 6px 18px rgba(164, 54, 118, .16);
-  --schaduw-diep: 0 8px 22px rgba(120, 30, 90, .26);
+  --schaduw:      0 6px 18px rgba(109, 40, 217, .15);
+  --schaduw-diep: 0 8px 22px rgba(76, 29, 149, .26);
 
   /* Knopvlakken. Donker genoeg gehouden zodat witte tekst erop leesbaar blijft. */
   --knop-paars:   #7c3aed;
@@ -29,23 +37,26 @@
   --glans:        inset 0 1px 0 rgba(255, 255, 255, .45),
                   inset 0 -4px 10px rgba(0, 0, 0, .22);
   --glans-licht:  inset 0 1px 0 rgba(255, 255, 255, .95),
-                  inset 0 -3px 9px rgba(214, 53, 127, .09);
+                  inset 0 -3px 9px rgba(109, 40, 217, .09);
 }
 
 * { box-sizing: border-box; }
 
-/* Ook op html, anders is de overscroll-rand op iOS wit in plaats van roze. */
+/* Ook op html, anders is de overscroll-rand op iOS wit in plaats van lila. */
 html {
   -webkit-text-size-adjust: 100%;
-  background: var(--roze-vlak);
+  background: var(--lila-vlak);
 }
 
+/* Het patroon van hartjes en konijntjes ligt onder een zachte roze/lila gloed,
+   zodat het decoratief blijft en niet met de standen om aandacht vecht. */
 body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(900px 500px at 88% 4%, rgba(196, 165, 255, .38) 0%, transparent 58%),
-    var(--roze-vlak);
+    radial-gradient(900px 520px at 88% 2%, rgba(255, 196, 232, .5) 0%, transparent 60%),
+    url("achtergrond.svg") repeat 0 0 / 240px 240px,
+    var(--lila-vlak);
   color: var(--tekst);
   font-family: "Trebuchet MS", "Segoe UI", system-ui, -apple-system, sans-serif;
   font-size: 17px;
@@ -153,7 +164,110 @@ h1 {
 
 .leeg[hidden] { display: none; }
 
-/* ---------- Spellenlijst (tabblad "alle spellen") ---------- */
+/* ---------- Totaalranking en Profielen (overzichtstabblad) ---------- */
+
+.ranking {
+  margin-bottom: 22px;
+  padding: 16px 14px 12px;
+  background: linear-gradient(170deg, var(--paneel), var(--lila-tint));
+  border: 1px solid var(--paneel-rand);
+  border-radius: 26px;
+  box-shadow: var(--glans-licht), var(--schaduw);
+}
+
+.ranking-kop {
+  margin: 0 0 14px;
+  color: var(--tekst-zacht);
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.profielen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profiel {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 14px 8px 12px;
+  background: #fff;
+  border: 2px solid var(--lila-rand);
+  border-radius: 22px;
+  box-shadow: var(--glans-licht);
+}
+
+/* Vast konijntje per speler: profiel-chris.svg en profiel-ida.svg zijn
+   permanent aan één speler gekoppeld, nooit willekeurig gekozen. */
+.profiel-icoon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: var(--schaduw);
+}
+
+.profiel-naam {
+  color: var(--tekst);
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: .4px;
+}
+
+.profiel-score {
+  color: var(--paars-diep);
+  font-size: 2.3rem;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Uitgelicht: de speler met de hoogste Totaalscore. Gouden rand plus een
+   kroontje-badge, dus de uitlichting hangt niet aan kleur alleen. */
+.profiel.voorstaand {
+  border-color: var(--goud-diep);
+  background: linear-gradient(175deg, #fffaee, #fff3d6);
+  box-shadow: var(--glans-licht), 0 0 0 4px rgba(255, 215, 110, .38), var(--schaduw);
+}
+
+.profiel.voorstaand .profiel-score { color: #7a3fc9; }
+
+.voorstaand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+  padding: 3px 11px 3px 9px;
+  border-radius: 999px;
+  background: linear-gradient(170deg, var(--goud), #f0b429);
+  border: 1px solid var(--goud-diep);
+  color: var(--goud-tekst);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+.voorstaand-badge[hidden] { display: none; }
+
+.kroon { flex: 0 0 auto; }
+
+.ranking-uitleg {
+  margin: 12px 0 0;
+  color: var(--tekst-zacht);
+  font-size: .8rem;
+  text-align: center;
+}
+
+/* ---------- Spellenlijst (overzichtstabblad) ---------- */
 
 .spellenlijst {
   margin: 0;
@@ -199,8 +313,8 @@ h1 {
   flex: 0 0 auto;
   padding: 5px 12px;
   border-radius: 999px;
-  background: var(--paars-tint);
-  border: 1px solid #d9c6ff;
+  background: var(--lila-tint);
+  border: 1px solid var(--lila-rand);
   color: var(--paars-diep);
   font-size: .9rem;
   font-weight: 700;
@@ -272,7 +386,7 @@ input[type="number"] {
 
 input[type="text"] { flex: 1; min-width: 0; }
 
-input::placeholder { color: #8f72aa; }
+input::placeholder { color: #7d5f99; }
 
 input:focus-visible,
 button:focus-visible,
@@ -295,7 +409,7 @@ summary:focus-visible {
 
 .primair:active { transform: translateY(1px); }
 
-/* ---------- Spelkiezer (tabblad spelselectie) ---------- */
+/* ---------- Spelkiezer (spel-tabblad) ---------- */
 
 .spelkiezer {
   display: flex;
@@ -382,7 +496,7 @@ summary:focus-visible {
 .speler:first-child .punten { color: var(--paars-diep); }
 
 .streep {
-  color: #c9a9e0;
+  color: var(--lila-rand);
   font-size: 1.8rem;
   font-weight: 700;
 }

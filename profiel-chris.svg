@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-label="Konijntje van Chris: zwarte kap met lila doodshoofd">
+  <defs>
+    <radialGradient id="c-plaat" cx="50%" cy="38%" r="68%">
+      <stop offset="0" stop-color="#efe4ff"/>
+      <stop offset="1" stop-color="#cdb4f6"/>
+    </radialGradient>
+    <radialGradient id="c-vacht" cx="34%" cy="26%" r="80%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ded0f5"/>
+    </radialGradient>
+    <radialGradient id="c-kap" cx="32%" cy="20%" r="84%">
+      <stop offset="0" stop-color="#43305f"/>
+      <stop offset="1" stop-color="#160d26"/>
+    </radialGradient>
+    <clipPath id="c-rand"><circle cx="48" cy="48" r="47"/></clipPath>
+  </defs>
+
+  <circle cx="48" cy="48" r="47" fill="url(#c-plaat)"/>
+
+  <g clip-path="url(#c-rand)">
+    <!-- Oren: allebei rechtop, licht naar buiten -->
+    <g transform="rotate(-15 35 22)">
+      <ellipse cx="35" cy="22" rx="7" ry="16" fill="url(#c-vacht)"/>
+      <ellipse cx="35" cy="23" rx="3.4" ry="10.5" fill="#c79bf0"/>
+    </g>
+    <g transform="rotate(15 61 22)">
+      <ellipse cx="61" cy="22" rx="7" ry="16" fill="url(#c-vacht)"/>
+      <ellipse cx="61" cy="23" rx="3.4" ry="10.5" fill="#c79bf0"/>
+    </g>
+
+    <!-- Lijfje -->
+    <path d="M48 76c-17 0-23 9-23 20h46c0-11-6-20-23-20Z" fill="url(#c-vacht)"/>
+
+    <!-- Kop -->
+    <ellipse cx="48" cy="54" rx="28" ry="25" fill="url(#c-vacht)"/>
+
+    <!-- Zwarte kap met puntjes: het "stoere" konijntje -->
+    <path d="M24 45c-11 3-16 12-14 18 3-3 6-8 10-11Z" fill="url(#c-kap)"/>
+    <path d="M72 45c11 3 16 12 14 18-3-3-6-8-10-11Z" fill="url(#c-kap)"/>
+    <path d="M20 54c0-22 12-28 28-28s28 6 28 28c-6-5-11-8-18-9-4-1-6 2-10 2s-6-3-10-2c-7 1-12 4-18 9Z" fill="url(#c-kap)"/>
+    <ellipse cx="33" cy="35" rx="9.5" ry="4.4" fill="#fff" opacity=".18" transform="rotate(-24 33 35)"/>
+    <circle cx="10" cy="64" r="4.4" fill="url(#c-kap)"/>
+    <circle cx="86" cy="64" r="4.4" fill="url(#c-kap)"/>
+
+    <!-- Lila doodshoofd op de kap -->
+    <ellipse cx="48" cy="35" rx="7.2" ry="6.4" fill="#c39bf5"/>
+    <rect x="43.6" y="38.2" width="8.8" height="6" rx="2.6" fill="#c39bf5"/>
+    <ellipse cx="45.3" cy="34.5" rx="2" ry="2.3" fill="#22103a"/>
+    <ellipse cx="50.7" cy="34.5" rx="2" ry="2.3" fill="#22103a"/>
+    <path d="M48 37 49.4 39.5h-2.8Z" fill="#22103a"/>
+
+    <!-- Ondeugende wenkbrauwen -->
+    <path d="M33 50 40 52.4" stroke="#22103a" stroke-width="2" stroke-linecap="round"/>
+    <path d="M63 50 56 52.4" stroke="#22103a" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Gezicht: scheve grijns -->
+    <ellipse cx="26" cy="64" rx="6" ry="3.6" fill="#c78ae8" opacity=".65"/>
+    <ellipse cx="70" cy="64" rx="6" ry="3.6" fill="#c78ae8" opacity=".65"/>
+    <ellipse cx="38" cy="58" rx="4.8" ry="5.6" fill="#1c1030"/>
+    <ellipse cx="58" cy="58" rx="4.8" ry="5.6" fill="#1c1030"/>
+    <circle cx="36.2" cy="55.8" r="1.9" fill="#fff"/>
+    <circle cx="56.2" cy="55.8" r="1.9" fill="#fff"/>
+    <path d="M42 65c2.5 4 8.5 4 11 0" fill="none" stroke="#1c1030" stroke-width="2" stroke-linecap="round"/>
+    <path d="M50.5 67.4 52.5 70.5l-4-.3Z" fill="#fff"/>
+  </g>
+</svg>

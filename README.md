@@ -31,15 +31,22 @@ openen van een bestand via `file://`.
 
 ## Hoe het werkt
 
-**Tabblad "Alle spellen"** — de Eindstand van elk spel in één oogopslag, in de vorm
-`Chris 0 - Ida 0`. Onder de lijst zit **Spellen beheren**: daarmee verschijnen per
-spel een hernoem- en verwijderknop plus het formulier om een nieuw spel toe te
-voegen. Buiten die modus blijft het overzicht kaal, zonder extra details.
+**Overzichtstabblad ("Overzicht")** — bovenaan staat de **Totaalranking**: twee vaste
+profielen, elk met een eigen konijntje-icoon, de naam en de Totaalscore. Die
+Totaalscore is de som van alle gewonnen potjes over alle spellen samen, waarbij elk
+spel even zwaar weegt. Wie voorstaat krijgt een gouden rand en een kroontje-badge; bij
+een gelijke stand wordt niemand uitgelicht.
 
-**Tabblad "Spelselectie"** — kies een spel, zie de Stand, en tik **Chris wint** of
+Daaronder staat de Eindstand van elk spel, in de vorm `Chris 0 - Ida 0`. Onder de
+lijst zit **Spellen beheren**: daarmee verschijnen per spel een hernoem- en
+verwijderknop plus het formulier om een nieuw spel toe te voegen. Buiten die modus
+blijft het overzicht kaal, zonder extra details.
+
+**Spel-tabblad ("Spel")** — kies een spel, zie de Stand, en tik **Chris wint** of
 **Ida wint** om een Uitslag in te voeren. Onder **Stand corrigeren** pas je de
 aantallen overwinningen rechtstreeks aan; dat is niet beperkt tot het terugdraaien
-van de laatste Uitslag.
+van de laatste Uitslag. De Totaalranking wordt na elke wijziging opnieuw uit de
+Standen berekend, dus ook een correctie of een verwijderd spel telt meteen door.
 
 Alles wordt direct bewaard in `localStorage` van het toestel zelf. Eén gedeeld
 toestel, geen synchronisatie, geen account.
@@ -58,8 +65,10 @@ leidend, ook als die leeg is.
 | -------------- | ---------------------------------------------------------- |
 | `index.html`   | Structuur van de twee tabbladen                             |
 | `styles.css`   | Vormgeving volgens de stijlgids                             |
-| `app.js`       | Spellenlijst, Standen en persistente opslag                 |
+| `app.js`       | Spellenlijst, Standen, Totaalranking en persistente opslag  |
 | `mascotte.svg` | De mascotte, met de hand opgebouwde SVG                     |
+| `profiel-chris.svg`, `profiel-ida.svg` | De twee vaste profiel-konijntjes    |
+| `achtergrond.svg` | Het herhalende patroon van hartjes en kleine konijntjes  |
 | `icoon-*.png`  | App-iconen voor het beginscherm, afgeleid van `mascotte.svg` |
 | `manifest.webmanifest` | Naam, kleuren en iconen voor de app op het beginscherm |
 | `STYLE.md`     | De stijlprompt en hoe die naar de UI vertaalt               |
@@ -67,16 +76,21 @@ leidend, ook als die leeg is.
 
 ## Vormgeving
 
-De visuele richting ligt vast in [`STYLE.md`](STYLE.md): een chibi wit konijntje met
-zwarte narrenmuts en roze doodshoofd, pastel goth, lichtroze achtergrond met paars en
-zwart als accenten, 3D vinyl toy met glossy finish. Die prompt is leidend voor nieuwe
-schermen en illustraties. Alle illustraties in deze repo zijn eigen werk.
+De visuele richting ligt vast in [`STYLE.md`](STYLE.md) (versie 2): een chibi wit
+konijntje met zwarte narrenmuts en doodshoofd, pastel goth, lila als hoofdaccent met
+paars en zwart eromheen, 3D vinyl toy met glossy finish, op een subtiel patroon van
+hartjes en kleine konijntjes die elk net iets anders kijken. Die prompt is leidend voor
+nieuwe schermen en illustraties. Alle illustraties in deze repo zijn eigen werk.
 
 ## Achtergrond
 
 Opgesteld volgens het Vibe · Spec · Harness framework. De spec in [`spec.md`](spec.md)
-is afgeleid van de Vibe-fase output (`scenarios.md` en `ubiquitous_language.md`). De
-code gebruikt consistent de Ubiquitous Language van het domein: Spel, Spellenlijst,
-Winnaar, Stand, Eindstand, Uitslag invoeren, Corrigeren, Persistente opslag.
+is afgeleid van de Vibe-fase output (`scenarios.md` en `ubiquitous_language.md`), en is
+inmiddels bijgewerkt met de prototype-feedback van Ida. De code gebruikt consistent de
+Ubiquitous Language van het domein: Spel, Spellenlijst, Winnaar, Uitslag, Stand,
+Eindstand, Totaalscore, Uitgelicht/voorstaand, Profiel, Overzichtstabblad, Spel-tabblad,
+Corrigeren, Persistente opslag.
 
-Bewust nog niet gebouwd, conform de spec: een datum bij een Uitslag.
+Bewust nog niet gebouwd, conform de spec: een datum bij een Uitslag. Nog te valideren
+bij Ida: of "Totaalscore" haar eigen term is — zie het openstaande punt onderaan
+[`spec.md`](spec.md).

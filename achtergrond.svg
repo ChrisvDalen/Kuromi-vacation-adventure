@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="presentation">
+  <!-- Decoratief achtergrondpatroon (stijlrichtlijn v2): hartjes en kleine
+       konijntjes die elk net iets anders kijken. Bewust laag contrast: het
+       patroon mag de leesbaarheid van standen en knoppen niet storen.
+       Wordt in styles.css herhaald als background-image. -->
+  <defs>
+    <!-- Vijf konijntjes-varianten. Alleen de ogen verschillen, zodat het
+         patroon natuurlijk oogt zonder dat de vorm onrustig wordt. -->
+    <g id="kop">
+      <ellipse cx="0" cy="-11" rx="3.1" ry="8" transform="rotate(-13)"/>
+      <ellipse cx="0" cy="-11" rx="3.1" ry="8" transform="rotate(13)"/>
+      <ellipse cx="0" cy="0" rx="9" ry="7.8"/>
+      <path d="M-7.4 6.2c-2.2 1.4-3.4 3.6-3.4 6.1h21.6c0-2.5-1.2-4.7-3.4-6.1Z"/>
+    </g>
+
+    <!-- vooruit -->
+    <g id="konijn-a">
+      <use href="#kop"/>
+      <circle cx="-3.2" cy="-.6" r="1.35" fill="#fff" opacity=".92"/>
+      <circle cx="3.2" cy="-.6" r="1.35" fill="#fff" opacity=".92"/>
+    </g>
+    <!-- naar links -->
+    <g id="konijn-b">
+      <use href="#kop"/>
+      <circle cx="-3.9" cy="-.6" r="1.35" fill="#fff" opacity=".92"/>
+      <circle cx="2.5" cy="-.6" r="1.35" fill="#fff" opacity=".92"/>
+    </g>
+    <!-- naar rechts, iets omhoog -->
+    <g id="konijn-c">
+      <use href="#kop"/>
+      <circle cx="-2.5" cy="-1.5" r="1.35" fill="#fff" opacity=".92"/>
+      <circle cx="3.9" cy="-1.5" r="1.35" fill="#fff" opacity=".92"/>
+    </g>
+    <!-- blije dichte oogjes -->
+    <g id="konijn-d">
+      <use href="#kop"/>
+      <path d="M-4.7-.9 -3.2-2.3 -1.7-.9M1.7-.9 3.2-2.3 4.7-.9"
+            fill="none" stroke="#fff" stroke-width="1.1" stroke-linecap="round" opacity=".92"/>
+    </g>
+    <!-- omlaag kijkend, knipoog -->
+    <g id="konijn-e">
+      <use href="#kop"/>
+      <circle cx="-3.2" cy=".4" r="1.35" fill="#fff" opacity=".92"/>
+      <path d="M1.9-.4 4.5-.4" fill="none" stroke="#fff" stroke-width="1.1" stroke-linecap="round" opacity=".92"/>
+    </g>
+
+    <g id="hartje">
+      <path d="M0 6.4C-3.4 3.9-6.6 1.6-6.6-1.6-6.6-4.7-2.8-6.3 0-3.3 2.8-6.3 6.6-4.7 6.6-1.6 6.6 1.6 3.4 3.9 0 6.4Z"/>
+    </g>
+  </defs>
+
+  <!-- Konijntjes: verspreid, licht geroteerd, wisselende variant en grootte -->
+  <g fill="#8b52d6" opacity=".16">
+    <use href="#konijn-a" transform="translate(28 34) rotate(-6) scale(1.05)"/>
+    <use href="#konijn-c" transform="translate(150 20) rotate(8) scale(.9)"/>
+    <use href="#konijn-d" transform="translate(96 92) rotate(-3) scale(1.15)"/>
+    <use href="#konijn-b" transform="translate(206 74) rotate(-9) scale(1)"/>
+    <use href="#konijn-e" transform="translate(44 148) rotate(7) scale(.95)"/>
+    <use href="#konijn-b" transform="translate(178 162) rotate(-5) scale(1.1)"/>
+    <use href="#konijn-a" transform="translate(120 214) rotate(4) scale(.88)"/>
+    <use href="#konijn-d" transform="translate(8 216) rotate(-8) scale(1)"/>
+    <use href="#konijn-c" transform="translate(232 216) rotate(-8) scale(1)"/>
+  </g>
+
+  <!-- Hartjes: kleiner en lichter, vullen de gaten tussen de konijntjes -->
+  <g fill="#e06fc0" opacity=".2">
+    <use href="#hartje" transform="translate(76 26) rotate(-12) scale(.85)"/>
+    <use href="#hartje" transform="translate(198 40) rotate(10) scale(.6)"/>
+    <use href="#hartje" transform="translate(14 92) rotate(6) scale(.7)"/>
+    <use href="#hartje" transform="translate(146 118) rotate(-8) scale(.95)"/>
+    <use href="#hartje" transform="translate(224 130) rotate(14) scale(.65)"/>
+    <use href="#hartje" transform="translate(88 154) rotate(-4) scale(.62)"/>
+    <use href="#hartje" transform="translate(118 60) rotate(18) scale(.55)"/>
+    <use href="#hartje" transform="translate(30 196) rotate(-14) scale(.75)"/>
+    <use href="#hartje" transform="translate(168 208) rotate(9) scale(.6)"/>
+    <use href="#hartje" transform="translate(214 182) rotate(-6) scale(.85)"/>
+    <use href="#hartje" transform="translate(64 116) rotate(22) scale(.5)"/>
+  </g>
+</svg>

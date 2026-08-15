@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-label="Konijntje van Ida: lila strikje met klein doodshoofdje">
+  <defs>
+    <radialGradient id="i-plaat" cx="50%" cy="38%" r="68%">
+      <stop offset="0" stop-color="#fbe6ff"/>
+      <stop offset="1" stop-color="#d8b8f2"/>
+    </radialGradient>
+    <radialGradient id="i-vacht" cx="34%" cy="26%" r="80%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e8ddf8"/>
+    </radialGradient>
+    <linearGradient id="i-strik" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a870f0"/>
+      <stop offset="1" stop-color="#7b3fd4"/>
+    </linearGradient>
+    <clipPath id="i-rand"><circle cx="48" cy="48" r="47"/></clipPath>
+  </defs>
+
+  <circle cx="48" cy="48" r="47" fill="url(#i-plaat)"/>
+
+  <g clip-path="url(#i-rand)">
+    <!-- Oren: één rechtop, één omgeklapt — het duidelijke verschil met Chris -->
+    <g transform="rotate(-9 34 21)">
+      <ellipse cx="34" cy="21" rx="7" ry="17" fill="url(#i-vacht)"/>
+      <ellipse cx="34" cy="22" rx="3.4" ry="11" fill="#f2a8e0"/>
+    </g>
+    <g transform="rotate(46 62 26)">
+      <ellipse cx="62" cy="26" rx="6.8" ry="16" fill="url(#i-vacht)"/>
+      <ellipse cx="62" cy="27" rx="3.2" ry="10" fill="#f2a8e0"/>
+    </g>
+
+    <!-- Lijfje -->
+    <path d="M48 76c-17 0-23 9-23 20h46c0-11-6-20-23-20Z" fill="url(#i-vacht)"/>
+
+    <!-- Kop -->
+    <ellipse cx="48" cy="54" rx="28" ry="25" fill="url(#i-vacht)"/>
+
+    <!-- Strikje schuin op de kop, met een klein doodshoofdje in het midden -->
+    <g transform="rotate(-14 31 33)">
+      <path d="M31 33 19 26.5v13Z" fill="url(#i-strik)"/>
+      <path d="M31 33 43 26.5v13Z" fill="url(#i-strik)"/>
+      <circle cx="31" cy="33" r="4.6" fill="#8f52e0"/>
+      <ellipse cx="31" cy="32.2" rx="2.5" ry="2.2" fill="#fbe6ff"/>
+      <rect x="29.4" y="33.4" width="3.2" height="2.3" rx="1" fill="#fbe6ff"/>
+      <circle cx="30.1" cy="32" r=".75" fill="#3a1d63"/>
+      <circle cx="31.9" cy="32" r=".75" fill="#3a1d63"/>
+    </g>
+
+    <!-- Vriendelijke wenkbrauwen -->
+    <path d="M34 49.6 40.5 48" stroke="#2c1747" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M62 49.6 55.5 48" stroke="#2c1747" stroke-width="1.8" stroke-linecap="round"/>
+
+    <!-- Gezicht: grote blije ogen -->
+    <ellipse cx="26" cy="64" rx="6" ry="3.6" fill="#f086cf" opacity=".7"/>
+    <ellipse cx="70" cy="64" rx="6" ry="3.6" fill="#f086cf" opacity=".7"/>
+    <ellipse cx="38" cy="58" rx="5.4" ry="6.2" fill="#1c1030"/>
+    <ellipse cx="58" cy="58" rx="5.4" ry="6.2" fill="#1c1030"/>
+    <circle cx="36" cy="55.6" r="2.1" fill="#fff"/>
+    <circle cx="56" cy="55.6" r="2.1" fill="#fff"/>
+    <circle cx="40" cy="61" r="1" fill="#fff" opacity=".7"/>
+    <circle cx="60" cy="61" r="1" fill="#fff" opacity=".7"/>
+    <path d="M44 66.5c1.6 2 4.4 2 6 0" fill="none" stroke="#1c1030" stroke-width="1.9" stroke-linecap="round"/>
+
+    <!-- Hartje op de wang -->
+    <path d="M66 71c-1.4-1.6-3.8-.4-3.8 1.3 0 1.6 2.2 3 3.8 4.2 1.6-1.2 3.8-2.6 3.8-4.2 0-1.7-2.4-2.9-3.8-1.3Z" fill="#e56fc4" opacity=".75"/>
+  </g>
+</svg>

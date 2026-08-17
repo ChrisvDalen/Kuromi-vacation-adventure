@@ -1,0 +1,13 @@
+version: 2
+
+# De app zelf heeft geen afhankelijkheden: geen npm, geen bundler, geen
+# pakketbeheer van welke soort dan ook. Het enige wat hier veroudert, zijn de
+# GitHub Actions in .github/workflows.
+
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: 'ci'

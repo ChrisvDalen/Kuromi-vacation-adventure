@@ -29,6 +29,20 @@ en dan `http://localhost:8000` openen. Een webserver is nodig omdat de app de
 standen bewaart in `localStorage`; browsers blokkeren dat bij het rechtstreeks
 openen van een bestand via `file://`.
 
+## Controleren of alles nog klopt
+
+De app heeft geen bouwstap: de bestanden gaan zoals ze zijn naar GitHub Pages. Om
+te controleren of er niets stuk is — een typefout in `app.js`, een kapot
+`manifest.webmanifest`, of een verwijzing naar een plaatje dat niet bestaat —
+draai je:
+
+```
+node scripts/check.mjs
+```
+
+Diezelfde controle draait automatisch bij elke push en pull request, via
+`.github/workflows/ci.yml`.
+
 ## Hoe het werkt
 
 **Overzichtstabblad ("Overzicht")** — bovenaan staat de **Totaalranking**: twee vaste

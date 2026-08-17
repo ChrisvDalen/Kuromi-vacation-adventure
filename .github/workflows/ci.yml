@@ -1,0 +1,24 @@
+name: CI
+
+# De app is een statische site zonder bouwstap en zonder afhankelijkheden, dus er
+# valt niets te installeren of te compileren. Wat deze workflow doet, is
+# controleren of de app nog inleesbaar en compleet is: zie scripts/check.mjs.
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      - name: Controleer de statische app
+        run: node scripts/check.mjs

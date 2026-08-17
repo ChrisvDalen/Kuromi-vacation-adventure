@@ -1,0 +1,18 @@
+# De app heeft geen bouwstap, dus er is geen build-map om te negeren.
+# Wat hier staat is rommel die besturingssystemen en editors zelf achterlaten.
+
+# macOS
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Logs van lokaal gepruts
+*.log
